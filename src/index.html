@@ -6,7 +6,7 @@
         <style>
 			img{
 				display: block;
-				height:97vh;
+				height: 90vh;
                 float: left;
 			}
 			.point{
@@ -26,8 +26,16 @@
 		</style>
 	</head>
 	<body>
-        <img id="feild" src="resources/FieldRender.jpg">
-        <span id="coords">(x,y)</span>
+        <img id="field" src="resources/FieldRender.jpg">
+		<span id="coords">(x,y)</span>
+		<table id="table">
+			<tr id="1">
+				<td><input class="x" type="number"></td>
+				<td><input class="y" type="number"></td>
+			</tr>
+		</table>
+		<button id="addPoint">New point</button>
+		
         <div id="dots"></div>
         <script src='./jquery-3.3.1.min.js'></script>
         <script src='./renderer.js'>
