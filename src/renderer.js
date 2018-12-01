@@ -1,28 +1,50 @@
 //const $ = require('jquery'); // eslint-disable-line no-unused-vars
 
 $(document).ready(function(){
-    function createPoint(e){
-        x = e.clientX;
-        y = e.clientY;
-        console.log('(' + x + ', ' + y + ')');
-        document.getElementById('dots').innerHTML += '<span id="' + id + '" class="point" style="left:' + e.clientX + 'px;top:' + e.clientY + 'px;"></span>'
+	var points = 1
+	var coords = [[0,0]]
+
+    function createPoint(x, y){
+		var point = document.createElement('span');
+		point.top = (-y-309).toString();
+		point.left = (x+8).toString();
+		point.addClass = 'point';
+		console.log(point);
+		$('#dots').append(point)
+
+	}
+
+    function getCoords(e){
+        return [e.clientX - 8, - e.clientY + 309]
     }
 
     $('#field').mousemove(function(e) {
-        x = e.clientX - 200;
-        y =  Math.round(window.innerHeight - e.clientY - (window.innerHeight/50)-2);
-        if(y<0){y=0}
-        $('#coords').text('(' + x + ', ' + y + ')');
+        $('#coords').text('(' + getCoords(e)[0] + ', ' + getCoords(e)[1] + ')');
     });
 
+
     $('#addPoint').click(function(){
-        console.log('add point')
-        var number = $('#table').children().length + 1
-        console.log(number)
-        var rowString = '<tr id="' + number + '"> \
-                            <td><input class="x" type="number"></td> \
-                            <td><input class="y" type="number"></td> \
-                        </tr>'
-        $('#table').append(rowString);
-    });
+		console.log('add point');
+		var tbody = $('#tbody')
+		points++
+		var row = document.createElement('TR');
+		row.id = points.toString();
+
+		var tdX = document.createElement('TD'); row.appendChild(tdX);
+		var tdY = document.createElement('TD'); row.appendChild(tdY);
+		var tdA = document.createElement('TD'); row.appendChild(tdA)
+
+		inputX = document.createElement('input')
+		inputY = document.createElement('input')
+		inputA = document.createElement('input')
+		//inputX.input(editPoint(points))
+
+        inputX.class = 'x';	inputX.type = 'number';	tdX.append(inputX)
+        inputY.class = 'y';	inputY.type = 'number';	tdY.append(inputY)
+		inputA.class = 'a';	inputA.type = 'number';	tdA.append(inputA)
+
+		$('#tbody').append(row)
+	});
+	
+	createPoint(0,0)
 });

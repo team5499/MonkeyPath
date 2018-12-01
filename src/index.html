@@ -12,34 +12,81 @@
 			.point{
 				position: absolute;
 				background-color: orange;
-				height: 5px;
-				width: 5px;
-				border-radius: 5px;
+				height: 7px;
+				width: 7px;
+				border-radius: 7px;
 			}
 			#coords{
 				display: block;
 			}
-			div{
+			#dots{
 				height: 100%;
 				width: 100%;
+			}
+			#points {
+				margin-left: auto;
+				margin-right: auto;
+				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+				border-collapse: collapse;
+			}
+
+			#points td input{
+				border: 1px solid #ddd;
+				width: 7em;
+			}
+
+			#points tr:nth-child(even) input{background-color: #f2f2f2;}
+
+			#points th{
+				padding-top: 4px;
+				padding-bottom: 4px;
+				background-color: #0b3311;
+				color: white;
+			}
+
+			#addPoint{
+				position: relative;
+				width: 100%;
+				padding: 4px;
+				margin-left: auto;
+				margin-right: auto;
+				background-color: transparent;
+				border: none;
+				color: #0b3311;
+				text-align: center;
+				display: inline-block;
+				font-size: 16px;
+				cursor: pointer;
+			}
+
+			#addPoint:hover{
+				background-color: #0b3311;
+				color: white;
+				border: 2px black
 			}
 		</style>
 	</head>
 	<body>
-        <img id="field" src="resources/FieldRender.jpg">
+		<img id="field" src="resources/FieldRender.jpg">
+		<div id="dots"></div>
 		<span id="coords">(x,y)</span>
-		<table id="table">
-			<tr id="1">
-				<td><input class="x" type="number"></td>
-				<td><input class="y" type="number"></td>
-			</tr>
+		<table id="points">
+			<tbody id="tbody">
+				<tr>
+					<th>X value</th>
+					<th>Y value</th>
+					<th>Angle</th>
+				</tr>
+				<tr id="1">
+					<td><input class="x" type="number" value="0"></td>
+					<td><input class="y" type="number" value="0"></td>
+					<td><input class="angle" type="number" value="0"></td>
+				</tr>
+			</tbody>
 		</table>
 		<button id="addPoint">New point</button>
-		
-        <div id="dots"></div>
         <script src='./jquery-3.3.1.min.js'></script>
         <script src='./renderer.js'>
-            // You can also require other files to run in this process
             require('./renderer.js')
         </script>
     </body>
