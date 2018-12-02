@@ -1,50 +1,63 @@
-//const $ = require('jquery'); // eslint-disable-line no-unused-vars
+const $ = require('jquery'); // eslint-disable-line no-unused-vars
 
-$(document).ready(function(){
-	var points = 1
-	var coords = [[0,0]]
+function getFieldCoords(e) {
+  const x = e.clientX - 8;
+  const y = Math.round(-e.clientY + ($('#img').height() / 2) + 8);
+  return [x, y];
+}
 
-    function createPoint(x, y){
-		var point = document.createElement('span');
-		point.top = (-y-309).toString();
-		point.left = (x+8).toString();
-		point.addClass = 'point';
-		console.log(point);
-		$('#dots').append(point)
+function getWindowCoords(x, y) {
+  return [x, -(y - ($('#img').height() / 2) + 8)];
+}
 
-	}
+$('document').ready(() => {
+  let points = 1;
+  const coords = [[0, 0, 0]];
 
-    function getCoords(e){
-        return [e.clientX - 8, - e.clientY + 309]
-    }
+  function createPoint(x, y, a) {
+    console.log('createPoint');
+    const point = $('<span></span>');
+    const feildCoords = getWindowCoords(x, y);
+    point.style.top = `${feildCoords[1]}px`;
+    point.style.left = `${feildCoords[0]}px`;
+    point.classList.add('point');
+    point.setAttribute('X', x);
+    point.setAttribute('Y', y);
+    point.setAttribute('A', a);
+    console.log(point);
+    $('#dots').append(point);
+    coords.push([x, y, a]);
+  }
 
-    $('#field').mousemove(function(e) {
-        $('#coords').text('(' + getCoords(e)[0] + ', ' + getCoords(e)[1] + ')');
-    });
+  $('#field').mousemove((e) => {
+    $('#coords').text(`(${getFieldCoords(e)[0]}, ${getFieldCoords(e)[1]})`);
+  });
 
 
-    $('#addPoint').click(function(){
-		console.log('add point');
-		var tbody = $('#tbody')
-		points++
-		var row = document.createElement('TR');
-		row.id = points.toString();
+  $('#addPoint').click(() => {
+    console.log('add point');
+    points += 1;
+    const row = $('<tr></tr>');
+    row.id = `_${points}`;
 
-		var tdX = document.createElement('TD'); row.appendChild(tdX);
-		var tdY = document.createElement('TD'); row.appendChild(tdY);
-		var tdA = document.createElement('TD'); row.appendChild(tdA)
+    const tdX = $('<tr></tr>'); row.appendChild(tdX);
+    const tdY = $('<tr></tr>'); row.appendChild(tdY);
+    const tdA = $('<tr></tr>'); row.appendChild(tdA);
 
-		inputX = document.createElement('input')
-		inputY = document.createElement('input')
-		inputA = document.createElement('input')
-		//inputX.input(editPoint(points))
+    const inputX = $('<input>');
+    const inputY = $('<input>');
+    const inputA = $('<input>');
 
-        inputX.class = 'x';	inputX.type = 'number';	tdX.append(inputX)
-        inputY.class = 'y';	inputY.type = 'number';	tdY.append(inputY)
-		inputA.class = 'a';	inputA.type = 'number';	tdA.append(inputA)
+    inputX.value = 0; inputX.class = 'x'; inputX.type = 'number'; tdX.append(inputX);
+    inputY.value = 0; inputY.class = 'y'; inputY.type = 'number'; tdY.append(inputY);
+    inputA.value = 0; inputA.class = 'a'; inputA.type = 'number'; tdA.append(inputA);
 
-		$('#tbody').append(row)
-	});
-	
-	createPoint(0,0)
+    $('#tbody').append(row);
+  });
+
+
+  $('#tbody').children()[0].id = '1';
+  createPoint(0, 0, 0);
+  console.log(getWindowCoords(0, 0));
+  console.log('done');
 });

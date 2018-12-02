@@ -23,6 +23,7 @@ repos:
     rev: v5.9.0  # Use the sha / tag you want to point at
     hooks:
     -   id: eslint
+        args: [--fix]
         additional_dependencies:
         -   eslint@^4.19.1
         -   eslint-config-airbnb-base@13.1.0
