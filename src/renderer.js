@@ -10,6 +10,7 @@ function getWindowCoords(x, y) {
   return [x, -(y - ($('#img').height() / 2) + 8)];
 }
 
+
 $('document').ready(() => {
   let points = 1;
   const coords = [[0, 0, 0]];
@@ -17,16 +18,21 @@ $('document').ready(() => {
   function createPoint(x, y, a) {
     console.log('createPoint');
     const point = $('<span></span>');
-    const feildCoords = getWindowCoords(x, y);
-    point.style.top = `${feildCoords[1]}px`;
-    point.style.left = `${feildCoords[0]}px`;
-    point.classList.add('point');
-    point.setAttribute('X', x);
-    point.setAttribute('Y', y);
-    point.setAttribute('A', a);
+    const fieldCoords = getWindowCoords(x, y);
+    console.log(point);
+    point.css('top', `${fieldCoords[1]}px`);
+    point.css('left', `${fieldCoords[0]}px`);
+    point.addClass('point');
+    point.attr('X', x);
+    point.attr('Y', y);
+    point.attr('A', a);
     console.log(point);
     $('#dots').append(point);
     coords.push([x, y, a]);
+  }
+
+  function changePoint(info) {
+    info.sort();
   }
 
   $('#field').mousemove((e) => {
@@ -34,29 +40,33 @@ $('document').ready(() => {
   });
 
 
-  $('#addPoint').click(() => {
+  $('#add_point').click(() => {
     console.log('add point');
     points += 1;
     const row = $('<tr></tr>');
-    row.id = `_${points}`;
+    row.attr('id', points.toString());
 
-    const tdX = $('<tr></tr>'); row.appendChild(tdX);
-    const tdY = $('<tr></tr>'); row.appendChild(tdY);
-    const tdA = $('<tr></tr>'); row.appendChild(tdA);
+    const tdX = $('<td></td>'); row.append(tdX);
+    const tdY = $('<td></td>'); row.append(tdY);
+    const tdA = $('<td></td>'); row.append(tdA);
 
     const inputX = $('<input>');
     const inputY = $('<input>');
     const inputA = $('<input>');
 
-    inputX.value = 0; inputX.class = 'x'; inputX.type = 'number'; tdX.append(inputX);
-    inputY.value = 0; inputY.class = 'y'; inputY.type = 'number'; tdY.append(inputY);
-    inputA.value = 0; inputA.class = 'a'; inputA.type = 'number'; tdA.append(inputA);
+    inputX.attr('value', 0); inputX.addClass('x'); inputX.attr('type', 'number'); tdX.append(inputX);
+    inputY.attr('value', 0); inputY.addClass('y'); inputY.attr('type', 'number'); tdY.append(inputY);
+    inputA.attr('value', 0); inputA.addClass('a'); inputA.attr('type', 'number'); tdA.append(inputA);
 
+    inputX.on('change', changePoint(points));
+    inputY.on('change', changePoint(points));
+    inputA.on('change', changePoint(points));
+    console.log(row);
     $('#tbody').append(row);
   });
 
 
-  $('#tbody').children()[0].id = '1';
+  $('#tbody').children()[1].id = '1'; // htmllint doesn't like numbered ids
   createPoint(0, 0, 0);
   console.log(getWindowCoords(0, 0));
   console.log('done');

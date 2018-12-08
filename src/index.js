@@ -11,7 +11,7 @@ let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 800, height: 600, frame: true });
+  mainWindow = new BrowserWindow({ width: 1100, height: 500, frame: false });
 
   // and load the index.html of the app.
   mainWindow.loadFile('src/index.html');
@@ -26,7 +26,12 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  // mainWindow.on('resize', () => {
+  //   mainWindow.resizeBy(800, 600)
+  // })
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
