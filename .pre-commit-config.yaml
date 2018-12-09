@@ -1,0 +1,29 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v1.4.0
+    hooks:
+    -   id: check-json
+    -   id: check-merge-conflict
+    -   id: check-symlinks
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: file-contents-sorter
+        files: .gitignore
+    -   id: mixed-line-ending
+    -   id: pretty-format-json
+        args: [--autofix]
+    - id: trailing-whitespace
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
+    sha: v1.1.0
+    hooks:
+    -   id: markdown-toc
+    -   id: htmlhint
+    -   id: htmllint
+-   repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v5.9.0  # Use the sha / tag you want to point at
+    hooks:
+    -   id: eslint
+        additional_dependencies:
+        -   eslint@^4.19.1
+        -   eslint-config-airbnb-base@13.1.0
+        -   eslint-plugin-import@2.14.0
