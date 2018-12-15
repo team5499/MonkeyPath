@@ -1,16 +1,14 @@
 body{
     overflow: hidden;
     margin: 0;
+    margin: 8px;
 }
 #field{
-    margin-top: 8px;
-    margin-left: 8px;
     vertical-align: top;
     display: inline-block;
-    width: 70%;
 }
-img{
-    width: 100%;
+#img{
+    height: 400px;
 }
 #dots{
     position: absolute;
@@ -75,4 +73,8 @@ img{
 #addPoint:hover{
     background-color: #0b3311;
     color: white;
+}
+.close{
+    width: 10px;
+    height: 10px;
 }
