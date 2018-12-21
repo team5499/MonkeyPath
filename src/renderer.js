@@ -12,57 +12,44 @@ function getWindowCoords(x, y) {
 
 
 $('document').ready(() => {
-  let points = 1;
-  const coords = [[0, 0, 0]];
-
+  let pointsNum = 0;
+  const pointsList = [];
 
   function createPoint(x, y, a) {
     console.log('createPoint');
     const point = $('<span></span>');
     const fieldCoords = getWindowCoords(x, y);
-    console.log(point);
     point.css('top', `${fieldCoords[1]}px`);
     point.css('left', `${fieldCoords[0]}px`);
     point.addClass('point');
-    point.attr('X', x);
-    point.attr('Y', y);
-    point.attr('A', a);
-    point.attr('P', points.toString());
-    console.log(point);
+    point.attr('x', x);
+    point.attr('y', y);
+    point.attr('a', a);
+    point.attr('p', pointsNum.toString());
     $('#dots').append(point);
-    coords.push([x, y, a]);
+    pointsList.push(point);
   }
 
-  function changePoint(p) {
-    const point = p;
-    const pointList = $('.point');
-    const row = $(`#${point}`).children();
-    console.log(row);
-    const x = row[0].value();
-    const y = row[1].value();
-    const fieldCoords = getWindowCoords(x, y);
-    let tarPoint;
-    for (let i = 0; i < pointList.length; i += 1) {
-      if (pointList[i].attr('P') === point) {
-        tarPoint = pointList[i];
-      }
+  function changePoint() {
+    console.log('changePoint');
+    const inputX = $('tr td:nth-child(1) input');
+    const inputY = $('tr td:nth-child(2) input');
+    console.log(inputX, inputY);
+    for (let i = 0; i < inputX.length; i += 1) {
+      console.log(pointsList[i]);
+      const fieldCoords = getWindowCoords(inputX[i].value, inputY[i].value);
+      pointsList[i].css('top', `${fieldCoords[1]}px`);
+      pointsList[i].css('left', `${fieldCoords[0]}px`);
+      pointsList[i].attr('x', inputX[i].value.toString());
+      pointsList[i].attr('y', inputY[i].value.toString());
     }
-    console.log(tarPoint);
-    tarPoint.css('top', `${fieldCoords[1]}px`);
-    tarPoint.css('left', `${fieldCoords[0]}px`);
-    tarPoint.attr('X', x);
-    tarPoint.attr('Y', y);
   }
 
-  $('#field').mousemove((e) => {
-    $('#coords').text(`(${getFieldCoords(e)[0]}, ${getFieldCoords(e)[1]})`);
-  });
-
-
-  $('#add_point').click(() => {
-    console.log('add point');
-    points += 1;
-    const point = points.toString();
+  function addRow() {
+    createPoint(0, 0, 0);
+    console.log('add row');
+    pointsNum += 1;
+    const point = pointsNum.toString();
     const row = $('<tr></tr>');
     row.attr('id', point);
 
@@ -81,21 +68,26 @@ $('document').ready(() => {
     inputA.attr('value', 0); inputA.addClass('a'); inputA.attr('type', 'number'); tdA.append(inputA);
     tdC.append(img);
     $('#tbody').append(row);
-
-    inputX.on('change', changePoint(points, inputX.value));
-    inputY.on('change', changePoint(points, inputY.value));
-    // inputA.on('change', changeAngle(points));
+    console.log(inputX, inputY);
+    // $('#add_point').click(changePoint());
+    inputX.change(changePoint());
+    inputY.change(changePoint());
+    // inputX.change()
+    // inputA.on('change', changeAngle(pointsNum));
 
     tdC.click(() => {
-      row.remove();
       console.log('close');
+      row.remove();
     });
-    console.log(row);
+  }
+
+  $('#field').mousemove((e) => {
+    $('#coords').text(`(${getFieldCoords(e)[0]}, ${getFieldCoords(e)[1]})`);
   });
 
-
-  $('#tbody').children()[1].id = '1'; // htmllint doesn't like numbered ids
-  createPoint(0, 0, 0);
-  console.log(getWindowCoords(0, 0));
-  console.log('done');
+  $('#add_point').click(() => {
+    console.log('add row via button');
+    addRow();
+  });
+  addRow();
 });
