@@ -1,4 +1,4 @@
-
+const $ = require('jquery'); 
 var java = require('java');
 var mvn = require('node-java-maven');
 
@@ -13,6 +13,9 @@ mvn(function(err, mvnResults) {
     
     function generatePath() {
         var PathGen = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
+        var x = $(".x").val();
+        var y = $(".y").val();
+        PathGen.generatePathSync(false, Pose2d(x,y), 1, 1, 1, 1)   
     }
 
     var Position = java.import('org.team5499.monkeyLib.math.Position');
