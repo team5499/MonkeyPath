@@ -16,6 +16,7 @@ mvn(function(err, mvnResults) {
         var x = $(".x").val();
         var y = $(".y").val();
         PathGen.generatePathSync(false, Pose2d(x,y), 1, 1, 1, 1)   
+        JavaSystem.out.printlnSync("hello from java");
     }
 
     var Position = java.import('org.team5499.monkeyLib.math.Position');

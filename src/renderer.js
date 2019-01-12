@@ -71,11 +71,10 @@ $('document').ready(() => {
     $('#tbody').append(row);
   });
 
+  var pathGen = require('pathGen.js');
   
   $('path_gen').click(() => {
-    exec('"java -jar MonkeyPathBackend.jar"', (err, stdout, stderr) => {
-      println(stdout)
-    });
+    pathGen.generatePath()
   });
 
   $('#tbody').children()[1].id = '1'; // htmllint doesn't like numbered ids
