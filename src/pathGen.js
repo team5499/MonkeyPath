@@ -10,6 +10,11 @@ mvn(function(err, mvnResults) {
         console.log('adding ' + c + ' to classpath');
         java.classpath.push(c);
     });
+    
+    function generatePath() {
+        var PathGen = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
+    }
+
     var Position = java.import('org.team5499.monkeyLib.math.Position');
     var JavaSystem = java.import('java.lang.System');
     JavaSystem.out.printlnSync("hello from java");
