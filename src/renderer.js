@@ -1,10 +1,16 @@
 const $ = require('jquery'); // eslint-disable-line no-unused-vars
+const { exec } = require('child_process');
 
 function getFieldCoords(e) {
   const x = e.clientX - 8;
   const y = Math.round(-e.clientY + ($('#img').height() / 2) + 8);
   return [x, y];
 }
+
+async function generatePath() {
+  
+}
+
 
 function getWindowCoords(x, y) {
   return [x, -(y - ($('#img').height() / 2) + 8)];
@@ -65,6 +71,12 @@ $('document').ready(() => {
     $('#tbody').append(row);
   });
 
+  
+  $('path_gen').click(() => {
+    exec('"java -jar MonkeyPathBackend.jar"', (err, stdout, stderr) => {
+      println(stdout)
+    });
+  });
 
   $('#tbody').children()[1].id = '1'; // htmllint doesn't like numbered ids
   createPoint(0, 0, 0);
