@@ -28,6 +28,7 @@ mvn(function(err, mvnResults) {
     // }
 
     var Position = java.import('org.team5499.monkeyLib.math.Position');
+    var PathGen = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
     var JavaSystem = java.import('java.lang.System');
     JavaSystem.out.printlnSync("hello from java");
     var newPos = new Position();
@@ -36,7 +37,7 @@ mvn(function(err, mvnResults) {
     function generatePath() {
         console.log('ran generatePath()')
         var Position2 = java.import('org.team5499.monkeyLib.math.Position');
-        var PathGen = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
+        var PathGen2 = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
         var generator = new PathGen();
         //var x = $(".x").val();
         //var y = $(".y").val();
