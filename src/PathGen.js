@@ -33,7 +33,7 @@ mvn(function(err, mvnResults) {
     var newPos = new Position();
     newPos.updateSync(1.0, 1.0, 1.0);
 
-    module.exports.generatePath = function() {
+    function generatePath() {
         console.log('ran generatePath()')
         var PathGen = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
         var generator = new PathGen();
@@ -53,4 +53,6 @@ mvn(function(err, mvnResults) {
         return generated;
     }
     console.log(newPos.toStringSync());
-});
+
+    module.exports.generatePath = () => generatePath();
+    });
