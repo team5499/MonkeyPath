@@ -50,7 +50,8 @@
     "dependencies": [
       {
         "artifactId": "monkey-lib",
-        "groupId": "org.team5499"
+        "groupId": "org.team5499",
+        "version": "2.1.0"
       }
     ],
     "repositories": [
