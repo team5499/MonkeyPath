@@ -54,23 +54,3 @@ mvn(function(err, mvnResults) {
     }
     console.log(newPos.toStringSync());
 });
-
-module.exports.generatePath = function() {
-    console.log('ran generatePath()')
-    var PathGen = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
-    var generator = new PathGen();
-    //var x = $(".x").val();
-    //var y = $(".y").val();
-    var x = [0, 1, 5]
-    var y = [0, 1, 5]
-    // var waypoints;
-    // for (i = 0; i <= x.length(); i++) {
-    //     waypoints.push(x[i], y[i])
-    // }
-    
-    var generated = generator.generatePathSync(false, 
-        Pose2d(Vector2(x[x.length], y[y.length]), Rotation2d(x[0], y[0], false)), 
-        1, 1, 1, 1);   
-    JavaSystem.out.printlnSync("hello from java");
-    return generated;
-}
