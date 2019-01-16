@@ -71,11 +71,13 @@ $('document').ready(() => {
     $('#tbody').append(row);
   });
 
-  var pathGen = require('pathGen.js');
-  
-  $('path_gen').click(() => {
-    pathGen.generatePath()
+  var PathGen = require('./PathGen.js');
+  $('#path_gen').click(() => {
+    console.log('before path_gen')
+    PathGen.generatePath()
   });
+
+  
 
   $('#tbody').children()[1].id = '1'; // htmllint doesn't like numbered ids
   createPoint(0, 0, 0);
