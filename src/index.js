@@ -11,7 +11,9 @@ let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1200, height: 400, frame: true });
+  mainWindow = new BrowserWindow({
+    width: 1200, height: 400, frame: true, fullscreen: true,
+  });
 
   // and load the index.html of the app.
   mainWindow.loadFile('src/index.html');

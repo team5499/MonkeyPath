@@ -1,11 +1,11 @@
 {
-  "author": "Team5499",
+  "author": "Nicholas Underwood",
   "config": {
     "forge": {
       "makers": [
         {
           "config": {
-            "name": "MonkeyPath"
+            "name": "Sorry!"
           },
           "name": "@electron-forge/maker-squirrel"
         },
@@ -32,7 +32,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.3.1"
   },
-  "description": "Spline generator for monkeys.",
+  "description": "Sorry! the classic board game",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.30",
     "@electron-forge/maker-deb": "^6.0.0-beta.30",
@@ -46,8 +46,9 @@
   "keywords": [],
   "license": "MIT",
   "main": "src/index.js",
-  "name": "monkey-path",
-  "productName": "MonkeyPath",
+  "name": "web-sorry",
+  "productName": "WebSorry",
+  "repository": "https://github.com/nicholasunderwood/WebSorry",
   "scripts": {
     "lint": "echo \"No linting configured\"",
     "make": "electron-forge make",
