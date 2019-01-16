@@ -46,6 +46,33 @@
     "electron-rebuild": "^1.8.2",
     "mocha": "^5.2.0"
   },
+  "java": {
+    "dependencies": [
+      {
+        "artifactId": "monkey-lib",
+        "groupId": "org.team5499",
+        "version": "2.2.0-SNAPSHOT"
+      }
+    ],
+    "repositories": [
+      {
+        "id": "team5499",
+        "url": "https://maven.team5499.org/"
+      },
+      {
+        "id": "ctre",
+        "url": "http://devsite.ctr-electronics.com/maven/release/"
+      },
+      {
+        "id": "wpilib",
+        "url": "https://repo1.maven.org/maven2/"
+      },
+      {
+        "id": "wpilib2",
+        "url": "http://first.wpi.edu/FRC/roborio/maven/release/"
+      }
+    ]
+  },
   "keywords": [],
   "license": "MIT",
   "main": "src/index.js",
