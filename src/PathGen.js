@@ -12,23 +12,7 @@ mvn(function(err, mvnResults) {
         java.classpath.push(c);
     });
 
-    // function generatePath() {
-    //     console.log('ran generatePath()')
-    //     var PathGen = java.import('org.team5499.monkeyLib.math.path.PathGenerator');
-    //     var generated = newPathGen();
-    //     var x = $(".x").val();
-    //     var y = $(".y").val();
-    //     var xVals;
-    //     var yVals;
-    //     for (i = 0; i <= x.length(); i++) {
-    //         xVals.push(x[i]);
-    //     }
-    //     generated.generatePathSync(false, Pose2d(x[0],y[0]), 1, 1, 1, 1)
-    //     JavaSystem.out.printlnSync("hello from java");
-    // }
-
     var Position = java.import('org.team5499.monkeyLib.math.Position');
-    var PathGen2 = java.import('org.team5499.monkeyLib.path.PathGenerator');
     var JavaSystem = java.import('java.lang.System');
     JavaSystem.out.printlnSync("hello from java");
     var newPos = new Position();
@@ -36,20 +20,17 @@ mvn(function(err, mvnResults) {
 
     function generatePath() {
         console.log('ran generatePath()')
-        var Position2 = java.import('org.team5499.monkeyLib.math.Position');
         var PathGen = java.import('org.team5499.monkeyLib.path.PathGenerator');
         var generator = new PathGen();
-        //var x = $(".x").val();
-        //var y = $(".y").val();
-        var x = [0, 1, 5];
-        var y = [0, 1, 5];
-//         for (i = 0; i <= x.length; x++) {
-//            var waypoints = Pose2d(Vector2(x[i], y[i), Rotation2d(x[i], y[i], false));
-//         }
-        var generated = generator.generatePathSync(false,
-            Pose2d(Vector2(x[x.length], y[y.length]), Rotation2d(x[0], y[0], false)),
-            1, 1, 1, 1);
+        var waypoints;
+        var x = $(".x").val();
+        var y = $(".y").val();
+        for (i = 0; i <= x.length; x++) {
+           var waypoints = Pose2d(Vector2(x[i], y[i]), Rotation2d(x[i], y[i], false));
+        }
+        var generated = generator.generatePathSync(false, waypoints, 0, 0, 0, 0);
         JavaSystem.out.printlnSync("hello from java");
+        return (generated);
     }
     console.log(newPos.toStringSync());
 
