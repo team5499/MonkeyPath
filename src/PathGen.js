@@ -3,7 +3,9 @@ const mvn = require('node-java-maven');
 
 module.exports = {};
 
-mvn((err, mvnResults) => {
+console.log(`${__dirname}:${__filename}`);
+
+mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
   if (err) {
     return console.error('could not resolve maven dependencies', err);
   }
