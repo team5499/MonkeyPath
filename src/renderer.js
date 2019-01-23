@@ -1,14 +1,10 @@
 const $ = require('jquery'); // eslint-disable-line no-unused-vars
-const { exec } = require('child_process');
+const PathGen = require('./PathGen.js');
 
 function getFieldCoords(e) {
   const x = e.clientX - 8;
   const y = Math.round(-e.clientY + ($('#img').height() / 2) + 8);
   return [x, y];
-}
-
-async function generatePath() {
-  
 }
 
 
@@ -71,13 +67,11 @@ $('document').ready(() => {
     $('#tbody').append(row);
   });
 
-  var PathGen = require('./PathGen.js');
   $('#path_gen').click(() => {
-    console.log('before path_gen')
-    PathGen.generatePath()
+    console.log('before path_gen');
+    PathGen.generatePath();
   });
 
-  
 
   $('#tbody').children()[1].id = '1'; // htmllint doesn't like numbered ids
   createPoint(0, 0, 0);

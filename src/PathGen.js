@@ -1,3 +1,6 @@
+// Find java
+require('./../node_modules/java/postInstall.js');
+
 const java = require('java');
 const mvn = require('node-java-maven');
 
@@ -19,18 +22,18 @@ mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
   const Pose2d = java.import('org.team5499.monkeyLib.math.geometry.Pose2d');
   const PathGenerator = java.import('org.team5499.monkeyLib.path.PathGenerator');
 
-  function generatePath(points) {
+  function generatePath() {
     console.log('running generatePath()');
     const generator = new PathGenerator(1.1, 1.1, 1.1, 1.1);
     const waypoints = [];
     // var x = Double($(".x").val());
     // var y = Double($(".y").val());
-    // var x = [0.0, 1.0, 3.0];
-    // var y = [0.0, 1.0, 3.0];
-    for (let i = 0; i < points.length; i += 1) {
+    const x = [0.0, 1.0, 3.0];
+    const y = [0.0, 1.0, 3.0];
+    for (let i = 0; i < x.length; i += 1) {
       waypoints.push(
-        Pose2d(Vector2(points[i][0], points[i][1]),
-          Rotation2d(points[i][0], points[i][1], false)),
+        Pose2d(Vector2(x[i], y[i]),
+          Rotation2d(x[i], y[i], false)),
       );
     }
     const waypointsJava = java.newArray('org.team5499.monkeyLib.math.geometry.Pose2d', waypoints);
