@@ -1,4 +1,5 @@
 const $ = require('jquery'); // eslint-disable-line no-unused-vars
+const PathGen = require('./PathGen.js');
 
 let waypoints = [];
 let splinePoints = [];
@@ -439,7 +440,7 @@ function update() {
   }
 
   waypoints = [];
-  let data = '';
+  // let data = '';
   $('tbody').children('tr').each(function () {
     const x = parseInt($($($(this).children()).children()[0]).val());
     const y = parseInt($($($(this).children()).children()[1]).val());
@@ -456,28 +457,28 @@ function update() {
   });
 
   draw(1);
+  PathGen.generatePath(waypoints);
+  // $.post({
+  //   url: '/api/calculate_splines',
+  //   data,
+  //   success(data) {
+  //     if (data === 'no') {
+  //       return;
+  //     }
 
-  $.post({
-    url: '/api/calculate_splines',
-    data,
-    success(data) {
-      if (data === 'no') {
-        return;
-      }
+  //     console.log(data);
 
-      console.log(data);
+  //     const points = JSON.parse(data).points;
 
-      const points = JSON.parse(data).points;
+  //     splinePoints = [];
+  //     for (const i in points) {
+	// 		    const point = points[i];
+  //       splinePoints.push(new Pose2d(new Translation2d(point.x, point.y), Rotation2d.fromRadians(point.rotation)));
+  //     }
 
-      splinePoints = [];
-      for (const i in points) {
-			    const point = points[i];
-        splinePoints.push(new Pose2d(new Translation2d(point.x, point.y), Rotation2d.fromRadians(point.rotation)));
-      }
-
-      draw(2);
-    },
-  });
+  //     draw(2);
+  //   },
+  // });
 }
 
 let flipped = false;
