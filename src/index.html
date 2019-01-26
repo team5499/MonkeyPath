@@ -1,37 +1,71 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>Monkey Path</title>
-        <link rel="stylesheet" href="index.css">
+        <title>Cheesy Path</title>
+
+        <link href='css/roboto.css' rel='stylesheet'>
+        <link href='css/sourcecodepro.css' rel='stylesheet'>
+        <link href='css/sourcecodepro.css' rel='stylesheet'>
+        <link href='css/style.css' rel='stylesheet'>
     </head>
-    <body>
-        <div id="field">
-            <img id="img" src="resources/FieldRender.jpg" alt="game field">
-            <div id="dots"></div>
+    <body onload='init()'>
+        <input id='title' placeholder='Title'>
+        <div id='canvases'>
+            <canvas id='background'></canvas>
+            <canvas id='field'></canvas>
         </div>
-        <div id="body">
-            <span id="coords">(x,y)</span>
-            <table id="points">
-                <tbody id="tbody">
-                    <tr>
-                        <th>X value</th>
-                        <th>Y value</th>
-                        <th>Angle</th>
-                    </tr>
-                    <tr>
-                        <td><input class="x" type="number" value="0"></td>
-                        <td><input class="y" type="number" value="0"></td>
-                        <td><input class="a" type="number" value="0"></td>
-                        <td><img class="close" src="resources/close.png" alt="close" height="10px"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button id="add_point">New point</button>
-            <button id="path_gen">Generate Path</button>
+        <div class='buttonContainer'>
+            <button onclick='addPoint()'>Add Point</button>
+            <button onclick='update()'>Update</button>
+            <button onclick='draw(3)'>Animate</button>
+            <button onclick='flipField()'>Flip Field</button>
+            <span class='checkbox'>Is reversed: <input type='checkbox' id='isReversed'></span>
         </div>
-        <script src="renderer.js">
-            require('./renderer.js')
-        </script>
+        <table>
+            <thead>
+                <th></th>
+                <th>X</th>
+                <th>Y</th>
+                <th>Heading</th>
+                <th>Comments</th>
+                <th>Enabled</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class='drag-handler'></td>
+                    <td class='x'><input type='number' value='20'></td>
+                    <td class='y'><input type='number' value='-95'></td>
+                    <td class='heading'><input type='number' value='0'></td>
+                    <td class='comments'><input type='search' placeholder='Comments'></td>
+                    <td class='enabled'><input type='checkbox' checked></td>
+                    <td class='delete'><button onclick='$(this).parent().parent().remove();update()'>&times;</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <input type='file' id='upl' style='display:none;'>
     </body>
 </html>
+
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<script type='text/javascript' src='renderer.js'></script>
+
+<script>if (window.module) module = window.module;</script>
+
+<script>
+    $('table tbody').sortable({
+        helper: fixWidthHelper,
+        deactivate: update
+    }).disableSelection();
+        
+    function fixWidthHelper(e, ui) {
+        ui.children().each(function() {
+            $(this).width($(this).width());
+        });
+        return ui;
+    }
+</script>
+
+
