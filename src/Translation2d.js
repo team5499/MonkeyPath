@@ -31,7 +31,7 @@ class Translation2d {
     inverse() {
 		return new Translation2d(-this.x, -this.y);
     }
-    
+
     interpolate(other, x) {
         if (x <= 0) {
             return new Translation2d(this.x, this.y);
@@ -52,7 +52,7 @@ class Translation2d {
     static dot(a, b) {
 		return a.x * b.x + a.y * b.y;
     }
-    
+
     static getAngle(a, b) {
         let cos_angle = this.dot(a, b) / (a.norm() * b.norm());
         if (Double.isNaN(cos_angle)) {

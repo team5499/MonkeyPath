@@ -200,7 +200,7 @@ function update() {
 	// 		console.log(data);
 
 	// 		let points = JSON.parse(data).points;
-		
+
 	// 		splinePoints = [];
 	// 		for (let i in points) {
   //       let point = points[i];

@@ -21,7 +21,7 @@ class Pose2d {
         return new Pose2d(new Translation2d(delta.dx * s - delta.dy * c, delta.dx * c + delta.dy * s),
                 new Rotation2d(cos_theta, sin_theta, false));
     }
-    
+
     static log(transform) {
         let dtheta = transform.getRotation().getRadians();
         let half_dtheta = 0.5 * dtheta;
@@ -94,7 +94,7 @@ class Pose2d {
 		ctx.stroke();
         ctx.closePath();
 	}
-	
+
 	toString() {
 		return "new Pose2d(new Translation2d(" + this.translation.x + ", " + this.translation.y + "), new Rotation2d(" + this.rotation.cos + ", " + this.rotation.sin + ", " + this.rotation.normalize + "))";
 	}
