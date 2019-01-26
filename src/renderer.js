@@ -1,4 +1,5 @@
-const $ = require('jquery');
+
+const $ = window.$ = window.jQuery = require('jQuery');
 require('jquery-ui');
 const PathGen = require('./PathGen.js');
 const Translation2d = require('./Translation2d.js');
@@ -77,6 +78,7 @@ function drawRobot(position, heading) {
 }
 
 function init() {
+    let width = 1604;
     let field = $('#field');
     let background = $('#background');
     let canvases = $('#canvases');
