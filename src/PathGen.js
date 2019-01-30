@@ -24,12 +24,14 @@ mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
   const PathGeneratorJava = java.import('org.team5499.monkeyLib.path.PathGenerator');
 
   function generatePath(waypoints) {
+    console.log(waypoints);
+    waypoints = [new Pose2d(new Translation2d(1, 1), Rotation2d.fromDegrees(90), ''), new Pose2d(new Translation2d(3, 3), Rotation2d.fromDegrees(180), '')];
     const generator = new PathGeneratorJava(1.0, 1.0, 1.0, 1.0);
     var splinePoints = [];
     for (let i = 0; i < waypoints.length; i += 1) {
       splinePoints.push(
-        Pose2dJava(Vector2Java(waypoints[i].getTranslation().x, waypoints[i].getTranslation().y),
-          Rotation2dJava.fromDegreesSync(waypoints[i].getRotation().getDegrees()),
+        Pose2dJava(Vector2Java(waypoints[i].getTranslation.x, waypoints[i].getTranslation.y),
+          Rotation2dJava.fromDegreesSync(waypoints[i].getRotation.getDegrees,
       ));
     }
     const splinePointsJava = java.newArray('org.team5499.monkeyLib.math.geometry.Pose2d', splinePoints);
@@ -41,6 +43,7 @@ mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
         new Translation2d(pose.getTranslationSync().getXSync(), pose.getTranslationSync().getYSync()), Rotation2d.fromDegrees(pose.getRotationSync().getDegreesSync())
       ));
     }
+    console.log(generatedPath);
     return generatedPath;
   }
 

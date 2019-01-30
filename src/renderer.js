@@ -6,15 +6,15 @@ const Translation2d = require('./Translation2d.js');
 const Rotation2d = require('./Rotation2d.js');
 const Pose2d = require('./Pose2d.js');
 
-let waypoints = [];
-let splinePoints = [];
-let ctx;
-let ctxBackground;
-let image;
-let imageFlipped;
-let wto;
-let change = "propertychange change click keyup input paste";
-let animating = false;
+var waypoints = [];
+var splinePoints = [];
+var ctx;
+var ctxBackground;
+var image;
+var imageFlipped;
+var wto;
+var change = "propertychange change click keyup input paste";
+var animating = false;
 
 const fieldWidth = 886; // inches
 const fieldHeight = 360; // inches
@@ -79,11 +79,13 @@ function drawRobot(position, heading) {
 
 function init() {
     let width = 1604;
+    let height = 651;
     let field = $('#field');
     let background = $('#background');
     let canvases = $('#canvases');
     let widthString = (width / 1.5) + "px";
     let heightString = (height / 1.5) + "px";
+    let ctx;
 
 	field.css("width", widthString);
     field.css("height", heightString);
@@ -124,6 +126,7 @@ function clear() {
 }
 
 function rebind() {
+    var change = "propertychange change click keyup input paste";
     let input = $('input');
     input.unbind(change);
     input.bind(change, function() {
@@ -169,6 +172,7 @@ function draw(style) {
 }
 
 function update() {
+
   if (animating) {
       return;
   }
@@ -210,6 +214,7 @@ function update() {
   //     }
 	// 	}
   // });
+  console.log(waypoints);
   splinePoints = [];
   splinePoints = PathGen.generatePath(waypoints);
 
