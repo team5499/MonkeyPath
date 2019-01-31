@@ -117,6 +117,7 @@ function init() {
 }
 
 function clear() {
+    ctx = document.getElementById('field').getContext('2d');
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = "#FF0000";
 
@@ -188,8 +189,8 @@ function update() {
     }
 		let comment = ($($($(this).children()).children()[3]).val());
     let enabled = ($($($(this).children()).children()[4]).prop('checked'));
-		if (enabled) {
-      waypoints.push(new Pose2d(new Translation2d(x, y), Rotation2d.fromDegrees(heading), comment));
+	if (enabled) {
+        waypoints.push(new Pose2d(new Translation2d(x, y), Rotation2d.fromDegrees(heading), comment));
     }
   });
 
