@@ -1,0 +1,93 @@
+{
+  "author": "Team5499",
+  "config": {
+    "forge": {
+      "makers": [
+        {
+          "config": {
+            "name": "MonkeyPath"
+          },
+          "name": "@electron-forge/maker-squirrel"
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "config": {},
+          "name": "@electron-forge/maker-deb"
+        },
+        {
+          "config": {},
+          "name": "@electron-forge/maker-rpm"
+        }
+      ],
+      "packagerConfig": {}
+    }
+  },
+  "dependencies": {
+    "chart.js": "^2.7.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "java": "^0.11.0",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1",
+    "node-java-maven": "^0.1.1"
+  },
+  "description": "Spline generator for monkeys.",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.30",
+    "@electron-forge/maker-deb": "^6.0.0-beta.30",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.30",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.30",
+    "@electron-forge/maker-zip": "^6.0.0-beta.30",
+    "assert": "^1.4.1",
+    "electron": "3.0.10",
+    "electron-rebuild": "^1.8.2",
+    "mocha": "^5.2.0"
+  },
+  "java": {
+    "dependencies": [
+      {
+        "artifactId": "monkey-lib",
+        "groupId": "org.team5499",
+        "version": "2.2.1"
+      }
+    ],
+    "repositories": [
+      {
+        "id": "team5499",
+        "url": "https://maven.team5499.org/"
+      },
+      {
+        "id": "ctre",
+        "url": "http://devsite.ctr-electronics.com/maven/release/"
+      },
+      {
+        "id": "wpilib",
+        "url": "https://repo1.maven.org/maven2/"
+      },
+      {
+        "id": "wpilib2",
+        "url": "http://first.wpi.edu/FRC/roborio/maven/release/"
+      }
+    ]
+  },
+  "keywords": [],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "monkey-path",
+  "productName": "MonkeyPath",
+  "scripts": {
+    "lint": "echo \"No linting configured\"",
+    "make": "electron-forge make",
+    "package": "electron-forge package",
+    "publish": "electron-forge publish",
+    "start": "electron-forge start",
+    "test": "mocha; tox",
+    "tox": "tox"
+  },
+  "version": "1.0.0"
+}
