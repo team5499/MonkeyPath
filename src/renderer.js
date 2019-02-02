@@ -1,3 +1,4 @@
+/* eslint-disable */
 const $ = window.$ = window.jQuery = require('jQuery');
 require('jquery-ui');
 const PathGen = require('./PathGen.js');
