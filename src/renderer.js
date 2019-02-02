@@ -25,7 +25,6 @@ const robotHeight = 27.47; // inches
 
 const waypointRadius = 7;
 const splineWidth = 2;
-
 const pi = Math.PI;
 
 function d2r(d) {
