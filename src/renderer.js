@@ -65,10 +65,9 @@ const t = Math.atan2(robotHeight, robotWidth);
 
 function drawRobot(position, heading) {
   const h = heading;
+  console.warn('drawPoint');
   const angles = [h + (pi / 2) + t, h - (pi / 2) + t, h + (pi / 2) - t, h - (pi / 2) - t];
-
   const points = [];
-
   angles.forEach((angle) => {
     const point = new Translation2d(position.translation.x + (r * Math.cos(angle)),
       position.translation.y + (r * Math.sin(angle)));
@@ -180,6 +179,7 @@ function update() {
   waypoints = [];
   // let data = ;
   $('tbody').children('tr').each(function () {
+    console.log('waypoint');
     const x = parseInt($($($(this).children()).children()[0]).val());
     const y = parseInt($($($(this).children()).children()[1]).val());
     let heading = parseInt($($($(this).children()).children()[2]).val());
@@ -194,29 +194,10 @@ function update() {
   });
 
   draw(1);
-
-  // $.post({
-  // 	url: "/api/calculate_splines",
-  // 	data: data,
-  // 	success: function(data) {
-  // 		if (data === "no") {
-  // 			return;
-  // 		}
-
-  // 		console.log(data);
-
-  // 		let points = JSON.parse(data).points;
-
-  // 		splinePoints = [];
-  // 		for (let i in points) {
-  //       let point = points[i];
-  //       splinePoints.push(new Pose2d(new Translation2d(point.x, point.y), Rotation2d.fromRadians(point.rotation)));
-  //     }
-  // 	}
-  // });
   console.log(waypoints);
   splinePoints = [];
   splinePoints = PathGen.generatePath(waypoints);
+  console.log(splinePoints);
 
   draw(2);
 }
