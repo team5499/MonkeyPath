@@ -21,7 +21,6 @@ mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
 
 
   function generatePath(waypoints) {
-    console.log(waypoints);
     const generator = new PathGeneratorJava(1.0, 1.0, 1.0, 1.0);
     const splinePoints = [];
     for (let i = 0; i < waypoints.length; i += 1) {

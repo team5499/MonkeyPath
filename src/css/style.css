@@ -19,7 +19,8 @@
 }
 
 #canvases {
-    margin: 0 auto;
+	margin: 0 auto;
+	margin-top: 30px;
     display: block;
     position: relative;
 }
@@ -69,7 +70,9 @@ td>input, td>input:focus {
 	outline: none;
 }
 
-.drag-handler {
+
+
+.drag_handler {
     margin-left: 3px;
     display: block;
     width: 20px;
@@ -109,7 +112,7 @@ td>input, td>input:focus {
 	background-color: #EE1900;
 }
 
-.buttonContainer {
+.button_container {
 	width: 828px;
 	margin: 10px auto;
 }

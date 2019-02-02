@@ -3,23 +3,22 @@
     <head>
         <title>Cheesy Path</title>
 
-        <link href='css/roboto.css' rel='stylesheet'>
-        <link href='css/sourcecodepro.css' rel='stylesheet'>
-        <link href='css/sourcecodepro.css' rel='stylesheet'>
-        <link href='css/style.css' rel='stylesheet'>
+        <link href="css/roboto.css" rel="stylesheet">
+        <link href="css/sourcecodepro.css" rel="stylesheet">
+        <link href="css/sourcecodepro.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
     </head>
-    <body onload='init()'>
-        <input id='title' placeholder='Title'>
-        <div id='canvases'>
-            <canvas id='background'></canvas>
-            <canvas id='field'></canvas>
+    <body onload="init()">
+        <div id="canvases">
+            <canvas id="background"></canvas>
+            <canvas id="field"></canvas>
         </div>
-        <div class='buttonContainer'>
-            <button onclick='addPoint()'>Add Point</button>
-            <button onclick='update()'>Update</button>
-            <button onclick='draw(3)'>Animate</button>
-            <button onclick='flipField()'>Flip Field</button>
-            <span class='checkbox'>Is reversed: <input type='checkbox' id='isReversed'></span>
+        <div class="button_container">
+            <button onclick="addPoint()">Add Point</button>
+            <button onclick="update()">Update</button>
+            <button onclick="draw(3)">Animate</button>
+            <button onclick="flipField()">Flip Field</button>
+            <span class="checkbox">Is reversed: <input type="checkbox" id="is_reversed"></span>
         </div>
         <table>
             <thead>
@@ -33,37 +32,18 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class='drag-handler'></td>
-                    <td class='x'><input type='number' value='20'></td>
-                    <td class='y'><input type='number' value='-95'></td>
-                    <td class='heading'><input type='number' value='0'></td>
-                    <td class='comments'><input type='search' placeholder='Comments'></td>
-                    <td class='enabled'><input type='checkbox' checked></td>
-                    <td class='delete'><button onclick='$(this).parent().parent().remove();update()'>&times;</button></td>
+                    <td class="drag_handler"></td>
+                    <td class="x"><input type="number" value="20"></td>
+                    <td class="y"><input type="number" value="-95"></td>
+                    <td class="heading"><input type="number" value="0"></td>
+                    <td class="comments"><input type="search" placeholder="Comments"></td>
+                    <td class="enabled"><input type="checkbox" checked></td>
+                    <td class="delete"><button onclick="$(this).parent().parent().remove();update()">&times;</button></td>
                 </tr>
             </tbody>
         </table>
-
-        <input type='file' id='upl' style='display:none;'>
     </body>
 </html>
-
-<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-
-<script type='text/javascript' src='renderer.js'></script>
-
+<script>if (typeof module === "object") {window.module = module; module = undefined;}</script>
+<script type="text/javascript" src="renderer.js"></script>
 <script>if (window.module) module = window.module;</script>
-
-<script src="js/jquery-ui.min.js">
-    $('table tbody').sortable({
-        helper: fixWidthHelper,
-        deactivate: update
-    }).disableSelection();
-
-    function fixWidthHelper(e, ui) {
-        ui.children().each(function() {
-            $(this).width($(this).width());
-        });
-        return ui;
-    }
-</script>
