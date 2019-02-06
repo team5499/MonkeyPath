@@ -1,6 +1,4 @@
 const { app, BrowserWindow } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
-const path = require('path');
-const url = require('url');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Cheesy Path</title>
+        <title>Monkey Path</title>
 
         <link href="css/roboto.css" rel="stylesheet">
         <link href="css/sourcecodepro.css" rel="stylesheet">
@@ -30,7 +30,7 @@
                 <th>Enabled</th>
                 <th>Delete</th>
             </thead>
-            <tbody>
+            <tbody class="dragger">
                 <tr>
                     <td class="drag_handler"></td>
                     <td class="x"><input type="number" value="20"></td>
@@ -46,4 +46,11 @@
 </html>
 <script>if (typeof module === "object") {window.module = module; module = undefined;}</script>
 <script type="text/javascript" src="renderer.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( ".dragger" ).sortable();
+        $( ".dragger" ).disableSelection();
+     } );
+</script>
 <script>if (window.module) module = window.module;</script>
