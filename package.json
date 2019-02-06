@@ -2,6 +2,9 @@
   "author": "Team5499",
   "config": {
     "forge": {
+      "electronPackagerConfig": {
+        "icon": "src/img/logo.incs"
+      },
       "makers": [
         {
           "config": {

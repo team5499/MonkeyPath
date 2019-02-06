@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
+const path = require('path');
+const url = require('url');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -12,7 +14,7 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1100, height: 500, frame: true,
+    width: 1100, height: 500, frame: true, icon: __dirname + "/img/logo.png"
   });
   mainWindow.maximize();
   // and load the index.html of the app.
