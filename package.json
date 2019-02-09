@@ -51,6 +51,16 @@
     "electron-rebuild": "^1.8.2",
     "mocha": "^5.2.0"
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "eslintIgnore": [
+    "**/js/jquery-ui.min.js",
+    "**/js/jquery.min.js"
+  ],
   "java": {
     "dependencies": [
       {
