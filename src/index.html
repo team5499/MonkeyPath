@@ -19,6 +19,7 @@
             <button onclick="draw(3)">Animate</button>
             <button onclick="flipField()">Flip Field</button>
             <span class="checkbox">Is reversed: <input type="checkbox" id="is_reversed"></span>
+            <span id="coords"></span>
         </div>
         <table>
             <thead>
@@ -50,7 +51,7 @@
 <script>
     $( function() {
         $(".dragger").sortable();
-        $(".dragger").disableSelection();
+		$(".dragger").disableSelection();
     });
 </script>
 <script>if (window.module) module = window.module;</script>

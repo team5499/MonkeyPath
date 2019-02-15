@@ -70,7 +70,14 @@ td>input, td>input:focus {
 	outline: none;
 }
 
-
+.dot {
+	z-index: -1;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background-color: fuchsia;
+}
 
 .drag_handler {
     margin-left: 3px;

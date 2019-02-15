@@ -58,7 +58,7 @@
     }
   },
   "eslintIgnore": [
-    "**/js/jquery-ui.min.js",
+    "**/jquery-ui.min.js",
     "**/js/jquery.min.js"
   ],
   "java": {

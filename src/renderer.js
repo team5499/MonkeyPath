@@ -8,6 +8,7 @@ const Pose2d = require('./Pose2d.js');
 
 let waypoints = [];
 let splinePoints = [];
+let movePoints = [];
 let ctx;
 let ctxBackground;
 let image;
@@ -17,8 +18,8 @@ let animating = false;
 
 const fieldWidth = 886; // inches
 const fieldHeight = 360; // inches
-const width = 1604; // pixels
-const height = 651; // pixels
+const width = 1592; // pixels
+const height = 656; // pixels
 
 const robotWidth = 22.01; // inches
 const robotHeight = 27.47; // inches
@@ -26,6 +27,40 @@ const robotHeight = 27.47; // inches
 const waypointRadius = 7;
 const splineWidth = 2;
 const pi = Math.PI;
+
+/**
+ * Converts coordinates relative to the full picture to coordinates relative to field
+ *
+ * @param mX X-coordinate
+ * @param mY Y-coordinate
+ * @returns coords coordinates list of x, y
+ */
+
+function getFieldCoords(mX, mY){
+  let x = mX - 162;
+  let y = -1 * mY + 256;
+  let coords = [x, y]
+  return (coords);
+}
+
+/**
+ * Converts coordinates relative to the field to coordinates relative to full picture
+ *
+ * @param mX X-coordinate
+ * @param mY Y-coordinate
+ * @returns coordinates list of x, y
+ */
+
+function getFullCoords(mX, mY){
+  let x = mX + 162;
+  let y = -1 * mY + 256;
+  let coords = [x, y]
+  return (coords);
+}
+
+$('#canvases').mousemove((e) => {
+  $('#coords').text('(' + e.clientX + ', ' + e.clientY + '), ' + getFieldCoords(e.clientX, e.clientY));
+});
 
 function d2r(d) {
   return d * (Math.PI / 180);
@@ -36,18 +71,27 @@ function r2d(r) {
 }
 
 let animation;
-function animate() {
+
+/**
+ * Draws the generated path without reloading the points
+ */
+
+ function animate() {
   drawSplines(false, true);
 }
+
+/**
+ * Draws to canvas
+ *
+ * @param {number} style specifies what to draw: 1 is waypoints only, 2 is waypoints + splines, and 3 is the animation
+ */
 
 function draw(style) {
   clear();
   drawWaypoints();
   switch (style) {
-    // waypoints only
     case 1:
       break;
-      // all
     case 2:
       drawSplines(true);
       drawSplines(false);
@@ -60,6 +104,13 @@ function draw(style) {
   }
 }
 
+/**
+ * Draws 4 points on the vertices of the bounding box of the robot
+ *
+ * @param position list of x, y
+ * @param heading angle in degrees
+ */
+
 function drawRobot(position, heading) {
   const h = heading;
   const angles = [h + (pi / 2) + t, h - (pi / 2) + t, h + (pi / 2) - t, h - (pi / 2) - t];
@@ -71,6 +122,14 @@ function drawRobot(position, heading) {
     point.draw(Math.abs(angle - heading) < pi / 2 ? '#00AAFF' : '#0066FF', splineWidth, ctx);
   });
 }
+
+/**
+ * Fills path with velocity-dependent color
+ *
+ * @param position Pose2d list of generated points
+ * @param heading angle in degrees
+ * @param color hue: rgba
+ */
 
 function fillRobot(position, heading, color) {
   const previous = ctx.globalCompositeOperation;
@@ -91,6 +150,13 @@ function fillRobot(position, heading, color) {
 
   ctx.globalCompositeOperation = previous;
 }
+
+/**
+ * Draws generated path. Can animate or update
+ *
+ * @param {boolean} fill
+ * @param {boolean} animate
+ */
 
 function drawSplines(fill, animate) {
   animate = animate || false;
@@ -132,6 +198,10 @@ function drawSplines(fill, animate) {
   }
 }
 
+/**
+ * Draws user-inputed waypoints using drawRobot()
+ */
+
 function drawWaypoints() {
   waypoints.forEach((waypoint) => {
     waypoint.draw(true, waypointRadius, ctx);
@@ -139,13 +209,18 @@ function drawWaypoints() {
   });
 }
 
+/**
+ * Run when points are updated,
+ * pushes new points to waypoints and redraws the path
+ */
+
+
 function update() {
   if (animating) {
     return;
   }
 
   waypoints = [];
-  // let data = ;
   $('tbody').children('tr').each(function () {
     const x = parseInt($($($(this).children()).children()[0]).val());
     const y = parseInt($($($(this).children()).children()[1]).val());
@@ -164,6 +239,12 @@ function update() {
   if ($('#is_reversed').checked) {
     waypoints.reverse();
   }
+
+  /**
+   * generated Pose2d points
+   * @type {Array}
+   */
+
   splinePoints = [];
   splinePoints = PathGen.generatePath(waypoints);
   splinePoints.pop();
@@ -174,6 +255,10 @@ function update() {
 
 const r = Math.sqrt((robotWidth ** 2) + (robotHeight ** 2)) / 2;
 const t = Math.atan2(robotHeight, robotWidth);
+
+/**
+ * Delays before updating
+ */
 
 function rebind() {
   const change = 'propertychange change click keyup input paste';
@@ -224,11 +309,18 @@ function init() {
 }
 
 let flipped = false;
+/**
+ * Flips field and updates
+ */
 function flipField() {
   flipped = !flipped;
   ctx.drawImage(flipped ? imageFlipped : image, 0, 0, width, height);
   update();
 }
+
+/**
+ * Clears all drawn elements
+ */
 
 function clear() {
   ctx = document.getElementById('field').getContext('2d');
@@ -240,10 +332,23 @@ function clear() {
   ctxBackground.drawImage(flipped ? imageFlipped : image, 0, 0, width, height);
 }
 
+/**
+ * Runs when Add Point is clicked, updates
+ */
+
 function addPoint() {
   let prev;
   if (waypoints.length > 0) prev = waypoints[waypoints.length - 1].translation;
   else prev = new Translation2d(20, 20);
+  var newFieldCoords = getFullCoords(prev.x + 50, prev.y + 50);
+  console.log("prev: " + [prev.x, prev.y]);
+  console.log("new coords: " + [prev.x + 50, prev.y + 50]);
+  console.log("get full coords: " + newFieldCoords);
+
+  $('#canvases').append(`${"<span class = 'dot' style={left: " +
+  newFieldCoords[0] + "; top: " +
+  newFieldCoords[1] +  ">" + "</span>"}`);
+
   $('tbody').append(`${'<tr>' + "<td class='drag_handler'></td>"
         + "<td class='x'><input type='number' value='"}${prev.x + 50}'></td>`
         + `<td class='y'><input type='number' value='${prev.y + 50}'></td>`
