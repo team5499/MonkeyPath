@@ -117,6 +117,16 @@ td>input, td>input:focus {
 	margin: 10px auto;
 }
 
+.point {
+	position: absolute;
+	height: 25px;
+	width: 25px;
+	background-color: rgb(255, 0, 200);
+	border-radius: 50%;
+	display: inline-block;
+	z-index: 1;
+  }
+
 button {
 	background-color: #0070FF;
 	border: none;

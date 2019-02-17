@@ -35,6 +35,27 @@ function r2d(r) {
   return r * (180 / Math.PI);
 }
 
+function toFieldCoords(mX, mY) {
+  var x = mX - 150;
+  var y = -1 * mY + 246;
+  let coords = [x, y]
+  return (coords);
+}
+
+function toFullCoords(mX, mY) {
+  var x = mX + 160;
+  var y = -1 * mY + 216;
+  let coords = [x, y]
+  return (coords);
+}
+
+$('#canvases').mousemove((e) => { //remove
+  console.log('move')
+  let x = toFieldCoords(e.clientX, e.clientY)[0]
+  let y = toFieldCoords(e.clientX, e.clientY)[1]
+  $('#coords').text('(' +  e.clientX + ', ' + e.clientY + '), ' + '(' + x + ', ' + y + ')');
+});
+
 let animation;
 function animate() {
   drawSplines(false, true);
@@ -244,6 +265,10 @@ function addPoint() {
   let prev;
   if (waypoints.length > 0) prev = waypoints[waypoints.length - 1].translation;
   else prev = new Translation2d(20, 20);
+  $('#canvases').append(`${"<span class='point' style=top:" +
+    toFullCoords(prev.x + 50, prev.y + 50)[1] + "px;left:" +
+    toFullCoords(prev.x + 50, prev.y + 50)[0] + "px;>"}`);
+
   $('tbody').append(`${'<tr>' + "<td class='drag_handler'></td>"
         + "<td class='x'><input type='number' value='"}${prev.x + 50}'></td>`
         + `<td class='y'><input type='number' value='${prev.y + 50}'></td>`
