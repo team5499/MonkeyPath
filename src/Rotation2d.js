@@ -10,12 +10,12 @@ class Rotation2d {
     }
   }
 
-  static fromRadians(angle_radians) {
-    return new Rotation2d(Math.cos(angle_radians), Math.sin(angle_radians), false);
+  static fromRadians(angleRadians) {
+    return new Rotation2d(Math.cos(angleRadians), Math.sin(angleRadians), false);
   }
 
-  static fromDegrees(angle_degrees) {
-    return this.fromRadians(d2r(angle_degrees));
+  static fromDegrees(angleDegrees) {
+    return this.fromRadians(d2r(angleDegrees));
   }
 
   normalizeFunc() {
@@ -66,8 +66,8 @@ class Rotation2d {
     } if (x >= 1) {
       return new Rotation2d(other.cos, other.sin, other.normalize);
     }
-    const angle_diff = this.inverse().rotateBy(other).getRadians();
-    return this.rotateBy(Rotation2d.fromRadians(angle_diff * x));
+    const angleDiff = this.inverse().rotateBy(other).getRadians();
+    return this.rotateBy(Rotation2d.fromRadians(angleDiff * x));
   }
 
   distance(other) {

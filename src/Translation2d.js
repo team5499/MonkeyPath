@@ -1,6 +1,5 @@
 const xOffset = 120;
 const yOffset = 180;
-const kEps = 1E-9;
 
 class Translation2d {
   constructor(x, y) {
@@ -21,7 +20,9 @@ class Translation2d {
   }
 
   rotateBy(rotation) {
-    return new Translation2d(this.x * rotation.cos - this.y * rotation.sin, this.x * rotation.sin + this.y * rotation.cos);
+    return new Translation2d(
+      this.x * rotation.cos - this.y * rotation.sin,
+      this.x * rotation.sin + this.y * rotation.cos);
   }
 
   direction() {
@@ -54,12 +55,12 @@ class Translation2d {
   }
 
   static getAngle(a, b) {
-    const cos_angle = this.dot(a, b) / (a.norm() * b.norm());
-    if (Double.isNaN(cos_angle)) {
+    const cosAngle = this.dot(a, b) / (a.norm() * b.norm());
+    if (Double.isNaN(cosAngle)) {
       return new Rotation2d(1, 0, false);
     }
 
-    return Rotation2d.fromRadians(Math.acos(Math.min(1.0, Math.max(cos_angle, -1.0))));
+    return Rotation2d.fromRadians(Math.acos(Math.min(1.0, Math.max(cosAngle, -1.0))));
   }
 
   static cross(a, b) {
