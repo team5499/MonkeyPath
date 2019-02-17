@@ -4,7 +4,7 @@ class Pose2d {
     this.rotation = rotation;
     this.comment = comment || '';
   }
-
+  
   get getTranslation() {
     return this.translation;
   }
