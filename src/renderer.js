@@ -212,6 +212,7 @@ function drawWaypoints() {
 /**
  * Run when points are updated,
  * pushes new points to waypoints and redraws the path
+ * @var {Array} splinePoints generated Pose2d points
  */
 
 
@@ -239,11 +240,6 @@ function update() {
   if ($('#is_reversed').checked) {
     waypoints.reverse();
   }
-
-  /**
-   * generated Pose2d points
-   * @type {Array}
-   */
 
   splinePoints = [];
   splinePoints = PathGen.generatePath(waypoints);
