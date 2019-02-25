@@ -58,7 +58,7 @@
     }
   },
   "eslintIgnore": [
-    "**/jquery-ui.min.js",
+    "**/js/jquery-ui.min.js",
     "**/js/jquery.min.js"
   ],
   "java": {
@@ -102,5 +102,5 @@
     "test": "mocha; tox",
     "tox": "tox"
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

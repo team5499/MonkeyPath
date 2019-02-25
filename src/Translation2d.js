@@ -22,8 +22,7 @@ class Translation2d {
   rotateBy(rotation) {
     return new Translation2d(
       this.x * rotation.cos - this.y * rotation.sin,
-      this.x * rotation.sin + this.y * rotation.cos,
-    );
+      this.x * rotation.sin + this.y * rotation.cos);
   }
 
   direction() {

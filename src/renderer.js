@@ -1,6 +1,6 @@
 /* eslint-disable */
 const $ = window.$ = window.jQuery = require('jQuery');
-require('jquery-ui');
+require('jquery-ui-dist/jquery-ui');
 const PathGen = require('./PathGen.js');
 const Translation2d = require('./Translation2d.js');
 const Rotation2d = require('./Rotation2d.js');
