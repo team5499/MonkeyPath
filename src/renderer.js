@@ -58,10 +58,6 @@ function getFullCoords(mX, mY){
   return (coords);
 }
 
-$('#canvases').mousemove((e) => {
-  $('#coords').text('(' + e.clientX + ', ' + e.clientY + '), ' + getFieldCoords(e.clientX, e.clientY));
-});
-
 function d2r(d) {
   return d * (Math.PI / 180);
 }
@@ -237,14 +233,18 @@ function update() {
   });
 
   draw(1);
-  if ($('#is_reversed').checked) {
-    waypoints.reverse();
-  }
+
+  // if ($('#is_reversed').checked) {
+  //   waypoints.reverse();
+  // }
 
   splinePoints = [];
   splinePoints = PathGen.generatePath(waypoints);
-  splinePoints.pop();
   console.log('generated path');
+  console.log(splinePoints[0].getTranslation, splinePoints[1].getTranslation);
+
+  splinePoints.pop();
+
   draw(2);
 }
 
@@ -337,9 +337,9 @@ function addPoint() {
   if (waypoints.length > 0) prev = waypoints[waypoints.length - 1].translation;
   else prev = new Translation2d(20, 20);
   var newFieldCoords = getFullCoords(prev.x + 50, prev.y + 50);
-  console.log("prev: " + [prev.x, prev.y]);
-  console.log("new coords: " + [prev.x + 50, prev.y + 50]);
-  console.log("get full coords: " + newFieldCoords);
+  // console.log("prev: " + [prev.x, prev.y]);
+  // console.log("new coords: " + [prev.x + 50, prev.y + 50]);
+  // console.log("get full coords: " + newFieldCoords);
 
   $('#canvases').append(`${"<span class = 'dot' style={left: " +
   newFieldCoords[0] + "; top: " +

@@ -25,6 +25,8 @@ mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
     // velocities are not being handled by path gen, default values
     const generator = new PathGeneratorJava(1.0, 1.0, 1.0, 1.0);
     const splinePoints = [];
+    var isReversed = $('#is_reversed').is(':checked');
+    if (isReversed) {console.log('reversed generation');} // remove
     for (let i = 0; i < waypoints.length; i += 1) { // appending waypoints with Pose2d objects
       splinePoints.push(
         Pose2dJava(Vector2Java(waypoints[i].getTranslation.x, waypoints[i].getTranslation.y),
@@ -32,7 +34,7 @@ mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
       );
     }
     const splinePointsJava = java.newArray('org.team5499.monkeyLib.math.geometry.Pose2d', splinePoints);
-    const generated = generator.generatePathSync(false, splinePointsJava);
+    const generated = generator.generatePathSync(isReversed, splinePointsJava, 1.0, 1.0, 1.0, 1.0);
     const generatedPath = [];
     for (let i = 0; i < generated.getPathLengthSync(); i += 1) {
       const pose = generated.getPoseSync(i).getPoseSync();
