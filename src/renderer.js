@@ -234,14 +234,14 @@ function update() {
 
   draw(1);
 
-  // if ($('#is_reversed').checked) {
-  //   waypoints.reverse();
-  // }
-
   splinePoints = [];
   splinePoints = PathGen.generatePath(waypoints);
+  var printSpline = [];
+  for (i = 1; i <= splinePoints.length - 1; i++) {
+    printSpline.push(splinePoints[i].getTranslation);
+  }
   console.log('generated path');
-  console.log(splinePoints[0].getTranslation, splinePoints[1].getTranslation);
+  console.log(printSpline);
 
   splinePoints.pop();
 
