@@ -3,6 +3,7 @@ require('./../node_modules/java/postInstall.js');
 
 const java = require('java'); // node modules
 const mvn = require('node-java-maven');
+const $ = require('jquery');
 const Translation2d = require('./Translation2d.js');
 const Rotation2d = require('./Rotation2d.js');
 const Pose2d = require('./Pose2d.js');
@@ -25,8 +26,7 @@ mvn({ packageJsonPath: `${__dirname}/../package.json` }, (err, mvnResults) => {
     // velocities are not being handled by path gen, default values
     const generator = new PathGeneratorJava(1.0, 1.0, 1.0, 1.0);
     const splinePoints = [];
-    var isReversed = $('#is_reversed').is(':checked');
-    if (isReversed) {console.log('reversed generation');} // remove
+    const isReversed = $('#is_reversed').is(':checked');
     for (let i = 0; i < waypoints.length; i += 1) { // appending waypoints with Pose2d objects
       splinePoints.push(
         Pose2dJava(Vector2Java(waypoints[i].getTranslation.x, waypoints[i].getTranslation.y),
