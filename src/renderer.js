@@ -18,8 +18,8 @@ let animating = false;
 
 const fieldWidth = 886; // inches
 const fieldHeight = 360; // inches
-const width = 1592; // pixels
-const height = 656; // pixels
+const width = 1604; // pixels
+const height = 651; // pixels
 
 const robotWidth = 22.01; // inches
 const robotHeight = 27.47; // inches
@@ -337,9 +337,6 @@ function addPoint() {
   if (waypoints.length > 0) prev = waypoints[waypoints.length - 1].translation;
   else prev = new Translation2d(20, 20);
   var newFieldCoords = getFullCoords(prev.x + 50, prev.y + 50);
-  // console.log("prev: " + [prev.x, prev.y]);
-  // console.log("new coords: " + [prev.x + 50, prev.y + 50]);
-  // console.log("get full coords: " + newFieldCoords);
 
   $('#canvases').append(`${"<span class = 'dot' style={left: " +
   newFieldCoords[0] + "; top: " +
